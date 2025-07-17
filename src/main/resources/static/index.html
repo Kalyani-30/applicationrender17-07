@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Glass Login</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="login-box">
     <form onsubmit="login(event)">
         <h2>Login</h2>
+
         <div class="user-box">
-            <input type="text" name="username" required />
-            <label>Username</label>
+            <input type="text" id="username" name="username" required />
+            <label for="username">Username</label>
         </div>
+
         <div class="user-box">
-            <input type="password" name="password" required />
-            <label>Password</label>
+            <input type="password" id="password" name="password" required />
+            <label for="password">Password</label>
         </div>
+
         <button type="submit">LOGIN</button>
     </form>
 </div>
@@ -30,13 +33,12 @@
       const res = await fetch("https://applicationrender17-07.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
       });
 
-      const message = await res.text();
-      alert(message);
+      const result = await res.json();
+      alert(result.message || "Login request sent");
     }
 </script>
-
 </body>
 </html>
